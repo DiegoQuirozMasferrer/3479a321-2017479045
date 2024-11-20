@@ -56,7 +56,7 @@ class _FeriadosScreenState extends State<FeriadosScreen> {
           feriados = data
               .map((json) => Feriado.fromJson(json))
               .toList()
-            ..sort((a, b) => a.fecha.compareTo(b.fecha)); // Ordenar por fecha
+            ..sort((a, b) => a.fecha.compareTo(b.fecha));
 
           feriadoMasCercano = obtenerFeriadoMasCercano(feriados);
           isLoading = false;
@@ -78,7 +78,7 @@ class _FeriadosScreenState extends State<FeriadosScreen> {
     final hoy = DateTime.now();
     return feriados.firstWhere(
           (feriado) => feriado.fecha.isAfter(hoy),
-      orElse: () => feriados.last, // Devuelve el último feriado si no hay futuros
+      orElse: () => feriados.last,// Devuelve el último feriado si no hay futuros
     );
   }
 
@@ -139,7 +139,7 @@ class _FeriadosScreenState extends State<FeriadosScreen> {
                       fetchFeriados(currentYear);
                     });
                   }
-                      : null, // Deshabilita el botón si el año es 2024
+                      : null,
                 ),
               ],
             ),
@@ -148,7 +148,7 @@ class _FeriadosScreenState extends State<FeriadosScreen> {
               ? const Center(child: CircularProgressIndicator())
               : Expanded(
             child: ListView.builder(
-              itemCount: feriados.length + 1, // +1 para feriado más cercano
+              itemCount: feriados.length + 1,
               itemBuilder: (context, index) {
                 if (index == 0 && feriadoMasCercano != null) {
                   return Card(
